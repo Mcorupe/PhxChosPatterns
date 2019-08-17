@@ -18,7 +18,7 @@ class CreatePattern extends Component {
   handleSubmit = e => {
     //e.preventDefault();
     this.props.createPattern(this.state);
-    window.alert("Submitted pattern!!");
+    this.props.history.push('/');
   };
 
   render() {

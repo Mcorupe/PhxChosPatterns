@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
+import moment from 'moment';
+//moment is a time-stamp formatter lib
 
 const PatternDetails = props => {
   const { pattern, auth } = props;
@@ -21,7 +23,7 @@ const PatternDetails = props => {
               Posted by {pattern.authorFirstName}
               {pattern.authorLastName}
             </div>
-            {/* <div>{pattern.createdAt}</div> */}
+            {moment(pattern.createdAt.toDate()).calendar()}
           </div>
         </div>
       </div>
