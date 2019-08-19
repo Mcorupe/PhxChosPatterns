@@ -23,7 +23,7 @@ const PatternDetails = props => {
               Posted by {pattern.authorFirstName}
               {pattern.authorLastName}
             </div>
-            {moment(pattern.createdAt.toDate()).calendar()}
+            {moment(pattern.createdAt.toDate()).format('MMMM Do YYYY, h:mm a')}
           </div>
         </div>
       </div>

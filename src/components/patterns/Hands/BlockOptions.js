@@ -1,6 +1,4 @@
 import React from "react";
-import { Dropdown } from "semantic-ui-react";
-//going to remove Semantic
 
 const blockOptions = [
   {
@@ -137,15 +135,8 @@ const blockOptions = [
   }
 ];
 
-const DropdownBlockOptions = props => (
-  <Dropdown
-    onChange={props.onChange}
-    placeholder="Blocks"
-    multiple
-    selection
-    options={blockOptions}
-    clearable={true}
-  />
+const SelectBlockOptions = props => (
+  <select placeholder="Blocks" multiple options={blockOptions} />
 );
 
-export default DropdownBlockOptions;
+export default SelectBlockOptions;

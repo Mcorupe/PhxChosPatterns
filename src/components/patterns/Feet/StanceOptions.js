@@ -1,6 +1,4 @@
 import React from "react";
-import { Dropdown } from "semantic-ui-react";
-//going to remove Semantic
 
 const stanceOptions = [
   {
@@ -59,16 +57,13 @@ const stanceOptions = [
   }
 ];
 
-const DropdownStanceOptions = props => (
-  <Dropdown
-    className="feet"
+const SelectStanceOptions = props => (
+  <select
     onChange={props.onChange}
     placeholder="Stances"
     multiple
-    selection
     options={stanceOptions}
-    clearable={true}
   />
 );
 
-export default DropdownStanceOptions;
+export default SelectStanceOptions;

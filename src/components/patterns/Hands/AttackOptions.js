@@ -1,6 +1,4 @@
 import React from "react";
-import { Dropdown } from "semantic-ui-react";
-//going to remove Semantic
 
 const attackOptions = [
   { key: "Punch", text: "Punch", value: "Punch", className: "hand" },
@@ -78,15 +76,13 @@ const attackOptions = [
   }
 ];
 
-const DropdownAttackOptions = props => (
-  <Dropdown
+const SelectAttackOptions = props => (
+  <select
     onChange={props.onChange}
     placeholder="Attacks"
     multiple
-    selection
     options={attackOptions}
-    clearable={true}
   />
 );
 
-export default DropdownAttackOptions;
+export default SelectAttackOptions;

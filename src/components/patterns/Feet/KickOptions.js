@@ -1,6 +1,4 @@
 import React from "react";
-import { Dropdown } from "semantic-ui-react";
-//going to remove Semantic
 
 const kickOptions = [
   {
@@ -54,16 +52,13 @@ const kickOptions = [
   }
 ];
 
-const DropdownKickOptions = props => (
-  <Dropdown
-    className="feet"
+const SelectKickOptions = props => (
+  <select
     onChange={props.onChange}
     placeholder="Kicks"
     multiple
-    selection
     options={kickOptions}
-    clearable={true}
   />
 );
 
-export default DropdownKickOptions;
+export default SelectKickOptions;
