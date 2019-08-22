@@ -13,7 +13,7 @@ const Navbar = props => {
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
         <Link to="/" className="brand-logo">
-          Tkd Patterns
+          Phoenix Cho's Patterns
         </Link>
         {links}
       </div>

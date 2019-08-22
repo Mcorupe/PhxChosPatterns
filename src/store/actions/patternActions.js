@@ -1,12 +1,12 @@
 //action creator
-
+// -------------------------the .add takes properties from CreatePattern.js's state as props(dispatchtoprops) line 9
+//make an async call to db(firebase) line 5
 export const createPattern = pattern => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    //make an async call to db(firebase)
     const firestore = getFirestore();
     const profile = getState().firebase.profile;
     const authorId = getState().firebase.auth.uid;
-    // -------------------------the .add takes properties from CreatePattern.js's state as props(dispatchtoprops)
+
     firestore
       .collection("patterns")
       .add({
