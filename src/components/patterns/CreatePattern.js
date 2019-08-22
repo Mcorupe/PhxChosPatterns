@@ -70,13 +70,14 @@ class CreatePattern extends Component {
                   <div className="row">
                     <div className="row">
                       <div className="feet-LR col s.25">
-                        <select className="browser-default" defaultValue="default"><option value="default">L / R</option>
+                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                          <option value="default">L / R</option>
                           <option value="1">Left</option>
                           <option value="2">Right</option>
                         </select>
                       </div>
                       <div className="feet-extras col s1.5">
-                        <select className="browser-default" defaultValue="default">
+                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Feet Extras</option>
                           <option value="1">High Section</option>
                           <option value="2">Low Section</option>
@@ -84,7 +85,7 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="feet-stances col s1.5">
-                        <select className="browser-default" defaultValue="default">
+                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Stances</option>
                           <option value="1">Maintain Stance</option>
                           <option value="2">Forward Stance</option>
@@ -99,7 +100,7 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="feet-kicks col s1.5">
-                        <select  className="browser-default" defaultValue="default">
+                        <select  className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Kicks</option>
                           <option value="1">Front Snap</option>
                           <option value="2">Side</option>
@@ -113,14 +114,14 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="hands-LR col s.25">
-                        <select className="browser-default" defaultValue="default">
+                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">L / R</option>
                           <option value="1">Left</option>
                           <option value="2">Right</option>
                         </select>
                       </div>
                       <div className="hands-extras col s1.5">
-                        <select className="browser-default" defaultValue="default">
+                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Hand Extras</option>
                           <option value="1">Maintain Hands</option>
                           <option value="2">Reverse</option>
@@ -139,7 +140,7 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="hands-blocks col s1.5">
-                        <select className="browser-default" defaultValue="default">
+                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default" disabled>
                             Blocks
                           </option>
@@ -193,7 +194,7 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="hands-attacks col s1.5">
-                        <select className="browser-default" defaultValue="default">
+                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Attacks</option>
                           <optgroup label="White Belt">
                             <option value="1">Punch</option>
