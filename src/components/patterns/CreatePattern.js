@@ -50,6 +50,7 @@ class CreatePattern extends Component {
     if (!auth.uid) return <Redirect to="/signin" />;
     console.log(this.state + "this.state");
     console.log(this.props + "this.props");
+    console.log(this.pattern+ "this.pattern")
     return (
       <div className="field">
         <form onSubmit={this.onSubmit} className="white">
@@ -69,14 +70,14 @@ class CreatePattern extends Component {
                   <br />
                   <div className="row">
                     <div className="row">
-                      <div className="feet-LR col s.25">
+                      <div className="input-field col s.25">
                         <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">L / R</option>
                           <option value="1">Left</option>
                           <option value="2">Right</option>
                         </select>
                       </div>
-                      <div className="feet-extras col s1.5">
+                      <div className="input-field col s1.5">
                         <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Feet Extras</option>
                           <option value="1">High Section</option>
@@ -84,7 +85,7 @@ class CreatePattern extends Component {
                           <option value="3">Jumping</option>
                         </select>
                       </div>
-                      <div className="feet-stances col s1.5">
+                      <div className="input-field col s1.5">
                         <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Stances</option>
                           <option value="1">Maintain Stance</option>
@@ -99,7 +100,7 @@ class CreatePattern extends Component {
                           <option value="10">Tiger Stance</option>
                         </select>
                       </div>
-                      <div className="feet-kicks col s1.5">
+                      <div className="input-field col s1.5">
                         <select  className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Kicks</option>
                           <option value="1">Front Snap</option>
@@ -113,14 +114,14 @@ class CreatePattern extends Component {
                           <option value="9">Inward Twisting</option>
                         </select>
                       </div>
-                      <div className="hands-LR col s.25">
+                      <div className="input-field col s.25">
                         <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">L / R</option>
                           <option value="1">Left</option>
                           <option value="2">Right</option>
                         </select>
                       </div>
-                      <div className="hands-extras col s1.5">
+                      <div className="input-field col s1.5">
                         <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Hand Extras</option>
                           <option value="1">Maintain Hands</option>
@@ -139,7 +140,7 @@ class CreatePattern extends Component {
                           <option value="14">Side</option>
                         </select>
                       </div>
-                      <div className="hands-blocks col s1.5">
+                      <div className="input-field col s1.5">
                         <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default" disabled>
                             Blocks
@@ -193,7 +194,7 @@ class CreatePattern extends Component {
                           </optgroup>                         
                         </select>
                       </div>
-                      <div className="hands-attacks col s1.5">
+                      <div className="input-field col s1.5">
                         <select className="browser-default" defaultValue="default" onChange={this.onChange}>
                           <option value="default">Attacks</option>
                           <optgroup label="White Belt">

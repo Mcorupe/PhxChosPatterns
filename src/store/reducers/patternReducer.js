@@ -1,9 +1,9 @@
 const initState = {
   patterns: [
-    { id: "1", title: "", line: [{}] },
-    { id: "2", title: "", line: [{}] },
-    { id: "3", title: "", line: [{}] },
-    { id: "4", title: "", line: [{}] }
+    { id: "1", title: "", line: [{feet:"", hands:""}] },
+    { id: "2", title: "", line: [{feet:"", hands:""}] },
+    { id: "3", title: "", line: [{feet:"", hands:""}] },
+    { id: "4", title: "", line: [{feet:"", hands:""}] }
   ]
 };
 //this gets stored on the pattern property on state by the rootReducer
