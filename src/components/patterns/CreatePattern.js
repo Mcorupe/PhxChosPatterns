@@ -6,51 +6,47 @@ import { Redirect } from "react-router-dom";
 class CreatePattern extends Component {
   state = {
     title: "",
-    line: [{ feet: "", hands: "" }]
+    content: [{ feet: "", hands: "" }]      
   };
-
-    onSubmit = e => {
+  //so im setting content in mapstatetoprops....do i have content in this.props in the component? but also ive set it up in state for the component.
+  // i think i am using one instead of the other? like props when i ment state or vice-versa.
+  onSubmit = e => {
     //e.preventDefault();
     this.props.createPattern(this.state);
     this.props.history.push("/");
+    console.log(this.state)
+    //alert(`Your ${this.state.title}pattern has been submitted.`);
   };
 
-  onChange = (event, newLine) => {
-    if (["feet", "hands"].includes(event.currentTarget.className)) {
-      let line = [...this.state.line];
-      line[event.target.id][event.target.className] = event.target.value;
-      this.setState({ line }, () =>
-        console.log(this.state.line, "the onChange was triggered")
-      );
-    } else {
-      this.setState({ [event.target.name]: event.target.value });
-    }
+
+  onChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
   };
 
   addLine = event => {
-    event.preventDefault();
     this.setState(prevState => ({
-      line: [...prevState.line, { feet: "", hands: "" }]
+      content: [...prevState.content, { feet: "", hands: "" }]
     }));
-    console.log(this.state.line, "addLine was triggered");
+    console.log(this.state.content, "addLine was triggered");
   };
 
   removeLine = (index, event) => {
-    event.preventDefault();
-    const line = Object.assign([], this.state.line);
-    line.splice(index, 1);
-    this.setState({ line: line });
-    console.log(this.state.line, "the RemoveLine");
+    const content = Object.assign([], this.state.content);
+    content.splice(index, 1);
+    this.setState({ content: content });
+    console.log(this.state.content, "the RemoveLine");
   };
 
   render() {
     const { auth } = this.props;
-    const { line } = this.state;
-    //so.. im passing stateToProps is this line = this.state stupid?
+    const { content } = this.state;
     if (!auth.uid) return <Redirect to="/signin" />;
-    console.log(this.state + "this.state");
-    console.log(this.props + "this.props");
-    console.log(this.pattern+ "this.pattern")
+    // console.log(this.state + "this.state");
+     console.log(this.props + " this.props  CreatePattern.js");
+    // console.log(this.pattern + "  this.pattern CreatePattern.js");
+    // console.log(this.patterns + "  this.patternS CreatePattern.js");
     return (
       <div className="field">
         <form onSubmit={this.onSubmit} className="white">
@@ -59,11 +55,23 @@ class CreatePattern extends Component {
             <label htmlFor="title">Title</label>
             <input type="text" id="title" onChange={this.onChange} />
           </div>
-          <button type="button" className="btn teal lighten-1 z-depth-2" onClick={this.addLine}>Add Line </button>
-          <button type="button" className="btn teal lighten-1 z-depth-2" onClick={this.removeLine}>Remove Line</button>
+          <button
+            type="button"
+            className="btn teal lighten-1 z-depth-2"
+            onClick={this.addLine}
+          >
+            Add Line{" "}
+          </button>
+          <button
+            type="button"
+            className="btn teal lighten-1 z-depth-2"
+            onClick={this.removeLine}
+          >
+            Remove Line
+          </button>
           <hr />
           <div className="row">
-            {line.map((value, idx) => {
+            {content.map((value, idx) => {
               return (
                 <div key={idx}>
                   <label> {`${idx + 1}`}</label>
@@ -71,14 +79,24 @@ class CreatePattern extends Component {
                   <div className="row">
                     <div className="row">
                       <div className="input-field col s.25">
-                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          id="content-feet"
+                          defaultValue="default"
+                          onChange={this.onChange}
+                        >
                           <option value="default">L / R</option>
                           <option value="1">Left</option>
                           <option value="2">Right</option>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
-                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          id="content-feet"
+                          defaultValue="default"
+                          onChange={this.onChange}
+                        >
                           <option value="default">Feet Extras</option>
                           <option value="1">High Section</option>
                           <option value="2">Low Section</option>
@@ -86,7 +104,12 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="input-field col s1.5">
-                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          id="content-feet"
+                          defaultValue="default"
+                          onChange={this.onChange}
+                        >
                           <option value="default">Stances</option>
                           <option value="1">Maintain Stance</option>
                           <option value="2">Forward Stance</option>
@@ -101,7 +124,12 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="input-field col s1.5">
-                        <select  className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          defaultValue="default"
+                          id="content-feet"
+                          onChange={this.onChange}
+                        >
                           <option value="default">Kicks</option>
                           <option value="1">Front Snap</option>
                           <option value="2">Side</option>
@@ -115,14 +143,24 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="input-field col s.25">
-                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          defaultValue="default"
+                          id="content-hands"
+                          onChange={this.onChange}
+                        >
                           <option value="default">L / R</option>
                           <option value="1">Left</option>
                           <option value="2">Right</option>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
-                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          defaultValue="default"
+                          id="content-hands"
+                          onChange={this.onChange}
+                        >
                           <option value="default">Hand Extras</option>
                           <option value="1">Maintain Hands</option>
                           <option value="2">Reverse</option>
@@ -141,7 +179,12 @@ class CreatePattern extends Component {
                         </select>
                       </div>
                       <div className="input-field col s1.5">
-                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          defaultValue="default"
+                          id="content-hands"
+                          onChange={this.onChange}
+                        >
                           <option value="default" disabled>
                             Blocks
                           </option>
@@ -186,16 +229,25 @@ class CreatePattern extends Component {
                           </optgroup>
                           <optgroup label="Red Belt">
                             <option value="">Knifehand X-Rising Block</option>
-                            <option value="">OuterForearm Block/Down Block</option>
-                            <option value="">InnerForearm Block/Down Block</option>
+                            <option value="">
+                              OuterForearm Block/Down Block
+                            </option>
+                            <option value="">
+                              InnerForearm Block/Down Block
+                            </option>
                           </optgroup>
                           <optgroup label="Black Belt">
                             <option value="">Cresent Block</option>
-                          </optgroup>                         
+                          </optgroup>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
-                        <select className="browser-default" defaultValue="default" onChange={this.onChange}>
+                        <select
+                          className="browser-default"
+                          defaultValue="default"
+                          id="content-hands"
+                          onChange={this.onChange}
+                        >
                           <option value="default">Attacks</option>
                           <optgroup label="White Belt">
                             <option value="1">Punch</option>
@@ -235,10 +287,28 @@ class CreatePattern extends Component {
             })}
           </div>
           <div className="row">
-            <button type="button" className="btn teal lighten-1 z-depth-2" onClick={this.addLine}>Add Line</button>
-            <button type="button" className="btn teal lighten-1 z-depth-2" onClick={this.removeLine}>Remove Line</button>
+            <button
+              type="button"
+              className="btn teal lighten-1 z-depth-2"
+              onClick={this.addLine}
+            >
+              Add Line
+            </button>
+            <button
+              type="button"
+              className="btn teal lighten-1 z-depth-2"
+              onClick={this.removeLine}
+            >
+              Remove Line
+            </button>
           </div>
-          <button type="button" onClick={this.onSubmit} className="btn teal lighten-1 z-depth-2 offset-s6">Create</button>
+          <button
+            type="button"
+            onClick={this.onSubmit}
+            className="btn teal lighten-1 z-depth-2 offset-s6"
+          >
+            Create
+          </button>
         </form>
       </div>
     );
@@ -248,7 +318,7 @@ class CreatePattern extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    line: state.pattern.line
+    content: state.pattern.content //content in MS2P
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -261,6 +331,24 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CreatePattern);
+
+
+
+  // onChange = (event, newLine) => {
+  //   if (["feet", "hands"].includes(event.currentTarget.content)) {
+  //     let content = [...this.state.content];
+  //     content[event.target.id][event.target.content] = event.target.value;
+  //     this.setState({ content }, () =>
+  //       console.log(this.state.content, "the onChange was triggered")
+  //     );
+  //   } else {
+  //     this.setState({ [event.target.name]: event.target.value });
+  //   }
+  // };
+
+
+
+
 
 /*
 

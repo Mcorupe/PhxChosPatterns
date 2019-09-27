@@ -7,6 +7,7 @@ const PatternSummary = ({pattern}) => {
     <div className="card z-depth-0 pattern-summary">
       <div className="card-content grey-text text darken-3">
         <span className="card-title">{pattern.title}</span>
+        <p>This is a PatternSummary</p>
         <p>Posted by {pattern.authorFirstName} {pattern.authorLastName}</p>
         <p className="grey-text">{moment(pattern.createdAt.toDate()).calendar()}</p>
       </div>

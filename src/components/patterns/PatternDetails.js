@@ -4,20 +4,20 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import moment from "moment";
-//moment is a time-stamp formatter lib
-//https://stackoverflow.com/questions/45827542/objects-are-not-valid-as-a-react-child-data-from-mongodb?noredirect=1&lq=1
-// CHECK LINE 19..but its gettin mapState2Props????
+//moment is a time-stamp formatter lib that im playing with
 
 const PatternDetails = props => {
-  const { pattern, auth, line} = props;
+  const { pattern, auth } = props;
   if (!auth.uid) return <Redirect to="/signin" />;
   if (pattern) {
     return (
+      //if im destructuring pattern off props... why do i have to use pattern.___
       <div className="container section pattern-details">
         <div className="card z-depth-0">
           <div className="card-content">
             <span className="card-title">{pattern.title}</span>
-            <p>{line} </p>
+            <p>{pattern.content}</p>
+            <p>These are PatternDetails</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>
@@ -40,11 +40,15 @@ const PatternDetails = props => {
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const patterns = state.firestore.data.patterns;
+  const title = state.firestore.data.title;
+  const content = state.firestore.data.content;
   const pattern = patterns ? patterns[id] : null;
   return {
     pattern: pattern,
-    auth: state.firebase.auth,
-    line: state.pattern.line   //shouldnt this be redundant because of patter: pattern????
+    title: title,
+    content: content,
+    auth: state.firebase.auth
+    //content: state.pattern.content   //shouldnt this be redundant because of pattern: pattern????
   };
 };
 

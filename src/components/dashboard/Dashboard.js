@@ -8,6 +8,8 @@ import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
   render() {
+    //console.log(this.props + " dashboard this.props")
+    
     const { patterns, auth } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -30,6 +32,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
   return {
     patterns: state.firestore.ordered.patterns,
+    // content: state.firestore.patterns.content,
+    // title: state.firestore.patterns.title,
     auth: state.firebase.auth
   };
 };
