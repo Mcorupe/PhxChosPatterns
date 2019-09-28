@@ -23,6 +23,36 @@ class CreatePattern extends Component {
       [event.target.id]: event.target.value
     });
   };
+  //trying to figure out how to update Per line of array... its just kinda overwriting at the moment.
+  //idx +1 is down in the render() its what is adding a newline
+  // onChange2 = (event, key) => {
+  //   this.setState(prevState => ({
+  //     content: {
+  //       ...prevState.content,
+  //       [prevState.content.key]: event.target.value
+  //     }
+  //   }));
+  // };
+
+  // onChange3 = (event, idx) => {
+  //       this.setState(prevState => ({
+  //         content: {
+  //           ...prevState.content,
+  //           [prevState.content.target.key[idx + 1] : event.target.value]
+  //         }
+  //       }))
+  // }
+
+  // onChange4 = (event, idx, value, newValue) => {
+  //   this.setState(prevState => {
+  //     const newContent = [...prevState.content];
+  //     newContent[idx].value = newValue;
+  //     return { content: newContent };
+  //   });
+  // };
+
+  //Maybe use some vanilla JS methods?
+  //Object.assign({idx})
 
   addLine = event => {
     this.setState(prevState => ({
@@ -42,11 +72,7 @@ class CreatePattern extends Component {
     const { auth } = this.props;
     const { content } = this.state;
     if (!auth.uid) return <Redirect to="/signin" />;
-    // console.log(this.state + "this.state");
-    //console.log(JSON.stringify(this.props));
     console.log(this);
-    // console.log(this.pattern + "  this.pattern CreatePattern.js");
-    // console.log(this.patterns + "  this.patternS CreatePattern.js");
     return (
       <div className="field">
         <form onSubmit={this.onSubmit} className="white">
