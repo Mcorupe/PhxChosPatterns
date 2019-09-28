@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 class CreatePattern extends Component {
   state = {
     title: "",
-    content: [{ feet: "", hands: "" }]      
+    content: [{ feet: "", hands: "" }]
   };
   //so im setting content in mapstatetoprops....do i have content in this.props in the component? but also ive set it up in state for the component.
   // i think i am using one instead of the other? like props when i ment state or vice-versa.
@@ -14,10 +14,9 @@ class CreatePattern extends Component {
     //e.preventDefault();
     this.props.createPattern(this.state);
     this.props.history.push("/");
-    console.log(this.state)
+    console.log(this.state);
     //alert(`Your ${this.state.title}pattern has been submitted.`);
   };
-
 
   onChange = event => {
     this.setState({
@@ -44,7 +43,8 @@ class CreatePattern extends Component {
     const { content } = this.state;
     if (!auth.uid) return <Redirect to="/signin" />;
     // console.log(this.state + "this.state");
-     console.log(this.props + " this.props  CreatePattern.js");
+    //console.log(JSON.stringify(this.props));
+    console.log(this);
     // console.log(this.pattern + "  this.pattern CreatePattern.js");
     // console.log(this.patterns + "  this.patternS CreatePattern.js");
     return (
@@ -81,163 +81,211 @@ class CreatePattern extends Component {
                       <div className="input-field col s.25">
                         <select
                           className="browser-default"
-                          id="content-feet"
+                          id="content-feet-lr"
                           defaultValue="default"
                           onChange={this.onChange}
                         >
                           <option value="default">L / R</option>
-                          <option value="1">Left</option>
-                          <option value="2">Right</option>
+                          <option value="left">Left</option>
+                          <option value="right">Right</option>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          id="content-feet"
+                          id="content-feet-extras"
                           defaultValue="default"
                           onChange={this.onChange}
                         >
                           <option value="default">Feet Extras</option>
-                          <option value="1">High Section</option>
-                          <option value="2">Low Section</option>
-                          <option value="3">Jumping</option>
+                          <option value="high section">High Section</option>
+                          <option value="low section">Low Section</option>
+                          <option value="jumping">Jumping</option>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          id="content-feet"
+                          id="content-feet-stances"
                           defaultValue="default"
                           onChange={this.onChange}
                         >
                           <option value="default">Stances</option>
-                          <option value="1">Maintain Stance</option>
-                          <option value="2">Forward Stance</option>
-                          <option value="3">Back Stance</option>
-                          <option value="4">Horse Riding Stance</option>
-                          <option value="5">Rear Foot Stance</option>
-                          <option value="6">Closed Foot Stance</option>
-                          <option value="7">Paralell Stance</option>
-                          <option value="8">Crane Stance</option>
-                          <option value="9">Uneven Stance</option>
-                          <option value="10">Tiger Stance</option>
+                          <option value="maintain stance">
+                            Maintain Stance
+                          </option>
+                          <option value="forward stance">Forward Stance</option>
+                          <option value="back stance">Back Stance</option>
+                          <option value="horse riding stance">
+                            Horse Riding Stance
+                          </option>
+                          <option value="rear foot stance">
+                            Rear Foot Stance
+                          </option>
+                          <option value="closed foot stance">
+                            Closed Foot Stance
+                          </option>
+                          <option value="paralell stance">
+                            Paralell Stance
+                          </option>
+                          <option value="crane stance">Crane Stance</option>
+                          <option value="uneven stance">Uneven Stance</option>
+                          <option value="tiger stance">Tiger Stance</option>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-feet"
+                          id="content-feet-kicks"
                           onChange={this.onChange}
                         >
                           <option value="default">Kicks</option>
-                          <option value="1">Front Snap</option>
-                          <option value="2">Side</option>
-                          <option value="3">Round House</option>
-                          <option value="4">Back Turning</option>
-                          <option value="5">Spinning Heel</option>
-                          <option value="6">Inside-to-Outside Cresent</option>
-                          <option value="7">Outside-to-Inside Cresent</option>
-                          <option value="8">Axe</option>
-                          <option value="9">Inward Twisting</option>
+                          <option value="front snap">Front Snap</option>
+                          <option value="side">Side</option>
+                          <option value="round house">Round House</option>
+                          <option value="back turning">Back Turning</option>
+                          <option value="spinning heel">Spinning Heel</option>
+                          <option value="inside to outside cresent">
+                            Inside-to-Outside Cresent
+                          </option>
+                          <option value="outside to inside cresent">
+                            Outside-to-Inside Cresent
+                          </option>
+                          <option value="axe">Axe</option>
+                          <option value="inward twisting">
+                            Inward Twisting
+                          </option>
                         </select>
                       </div>
                       <div className="input-field col s.25">
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands"
+                          id="content-hands-lr"
                           onChange={this.onChange}
                         >
                           <option value="default">L / R</option>
-                          <option value="1">Left</option>
-                          <option value="2">Right</option>
+                          <option value="left">Left</option>
+                          <option value="right">Right</option>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands"
+                          id="content-hands-extras"
                           onChange={this.onChange}
                         >
                           <option value="default">Hand Extras</option>
-                          <option value="1">Maintain Hands</option>
-                          <option value="2">Reverse</option>
-                          <option value="3">Lunge</option>
-                          <option value="4">Twin</option>
-                          <option value="5">Double</option>
-                          <option value="6">Inward</option>
-                          <option value="7">Upward</option>
-                          <option value="8">Downward</option>
-                          <option value="9">Side-way</option>
-                          <option value="10">Horizontal</option>
-                          <option value="11">Verticle</option>
-                          <option value="12">Supported</option>
-                          <option value="13">Unsupported</option>
-                          <option value="14">Side</option>
+                          <option value="maintain hands">Maintain Hands</option>
+                          <option value="reverse">Reverse</option>
+                          <option value="lunge">Lunge</option>
+                          <option value="twin">Twin</option>
+                          <option value="double">Double</option>
+                          <option value="inward">Inward</option>
+                          <option value="upward">Upward</option>
+                          <option value="downward">Downward</option>
+                          <option value="sideway">Side-way</option>
+                          <option value="horizontal">Horizontal</option>
+                          <option value="verticle">Verticle</option>
+                          <option value="supported">Supported</option>
+                          <option value="unsupported">Unsupported</option>
+                          <option value="side">Side</option>
                         </select>
                       </div>
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands"
+                          id="content-hands-blocks"
                           onChange={this.onChange}
                         >
                           <option value="default" disabled>
                             Blocks
                           </option>
                           <optgroup label="White Belt">
-                            <option value="1">Down Block</option>
-                            <option value="2">Rising Block</option>
-                            <option value="3">Outer Forearm Block</option>
-                            <option value="4">Inner Forearm Block</option>
-                            <option value="5">Hammer Block</option>
-                            <option value="6">Knifehand Guarding Block</option>
+                            <option value="down block">Down Block</option>
+                            <option value="rising block">Rising Block</option>
+                            <option value="outer forearm block">
+                              Outer Forearm Block
+                            </option>
+                            <option value="inner forearm block">
+                              Inner Forearm Block
+                            </option>
+                            <option value="hammer block">Hammer Block</option>
+                            <option value="knifehand guarding block">
+                              Knifehand Guarding Block
+                            </option>
                           </optgroup>
                           <optgroup label="Yellow Belt">
-                            <option value="7">Two Arm Block</option>
-                            <option value="8">Twin Forearm Block</option>
+                            <option value="two arm block">Two Arm Block</option>
+                            <option value="twin forearm block">
+                              Twin Forearm Block
+                            </option>
                           </optgroup>
                           <optgroup label="Orange Belt">
-                            <option value="9">Wedging Block</option>
-                            <option value="10">Knifehand Block</option>
+                            <option value="wedging block">Wedging Block</option>
+                            <option value="knifehand block">
+                              Knifehand Block
+                            </option>
                           </optgroup>
                           <optgroup label="Green Belt">
-                            <option value="11">Reverse Circular Block</option>
-                            <option value="12">Knifehand Rising Block</option>
+                            <option value="reverse circular block">
+                              Reverse Circular Block
+                            </option>
+                            <option value="knifehand rising block">
+                              Knifehand Rising Block
+                            </option>
                           </optgroup>
                           <optgroup label="Blue Belt">
-                            <option value="8">
+                            <option value="twin knifehand forearm block">
                               Twin Knifehand Forearm Block
                             </option>
-                            <option value="">X-Pressing Block</option>
-                            <option value="">X-Rising Block</option>
-                            <option value="">Knifehand Hooking Block</option>
+                            <option value="x pressing block">
+                              X-Pressing Block
+                            </option>
+                            <option value="x rising block">
+                              X-Rising Block
+                            </option>
+                            <option value="knifehand hooking block">
+                              Knifehand Hooking Block
+                            </option>
                           </optgroup>
                           <optgroup label="Purple Belt">
-                            <option value="">Pole Block</option>
-                            <option value="">Ridge Hand Block</option>
-                            <option value="">Palm Inward Block</option>
-                            <option value="">Palm Upward Block</option>
+                            <option value="pole block">Pole Block</option>
+                            <option value="ridge hand block">
+                              Ridge Hand Block
+                            </option>
+                            <option value="palm inward block">
+                              Palm Inward Block
+                            </option>
+                            <option value="palm upward block">
+                              Palm Upward Block
+                            </option>
                           </optgroup>
                           <optgroup label="Brown Belt">
-                            <option value="">Palm Downward Block</option>
-                            <option value="">Ridge Hand Guarding Block</option>
-                            <option value="">W Shape Block</option>
+                            <option value="palm downward block">
+                              Palm Downward Block
+                            </option>
+                            <option value="ridge hand guarding block">
+                              Ridge Hand Guarding Block
+                            </option>
+                            <option value="w shape block">W Shape Block</option>
                           </optgroup>
                           <optgroup label="Red Belt">
-                            <option value="">Knifehand X-Rising Block</option>
-                            <option value="">
+                            <option value="knifehand x rising block">
+                              Knifehand X-Rising Block
+                            </option>
+                            <option value="outerforearm block/down block">
                               OuterForearm Block/Down Block
                             </option>
-                            <option value="">
+                            <option value="innerforearm block/down block">
                               InnerForearm Block/Down Block
                             </option>
                           </optgroup>
                           <optgroup label="Black Belt">
-                            <option value="">Cresent Block</option>
+                            <option value="cresent block">Cresent Block</option>
                           </optgroup>
                         </select>
                       </div>
@@ -245,38 +293,46 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands"
+                          id="content-hands-attacks"
                           onChange={this.onChange}
                         >
                           <option value="default">Attacks</option>
                           <optgroup label="White Belt">
-                            <option value="1">Punch</option>
+                            <option value="punch">Punch</option>
                           </optgroup>
                           <optgroup label="Yellow Belt">
-                            <option value="7">Back Fist</option>
-                            <option value="2">Knifehand Strike</option>
+                            <option value="back fist">Back Fist</option>
+                            <option value="knifehand strike">
+                              Knifehand Strike
+                            </option>
                           </optgroup>
                           <optgroup label="Orange Belt">
-                            <option value="3">Spearfinger</option>
-                            <option value="8">Upset Punch</option>
+                            <option value="spearfinger">Spearfinger</option>
+                            <option value="upset punch">Upset Punch</option>
                           </optgroup>
                           <optgroup label="Green Belt" />
-                          <option value="4">Elbow</option>
+                          <option value="elbow">Elbow</option>
                           <optgroup label="Blue Belt">
-                            <option value="5">Hamer Fist</option>
+                            <option value="hammer fist">Hamer Fist</option>
                           </optgroup>
                           <optgroup label="Purple Belt">
-                            <option value="11">Circular Punch</option>
+                            <option value="circular punch">
+                              Circular Punch
+                            </option>
                           </optgroup>
                           <optgroup label="Brown Belt" />
-                          <option value="6">Ridge Hand</option>
+                          <option value="ridge hand">Ridge Hand</option>
                           <optgroup label="Red Belt">
-                            <option value="9">Arc Hand Attack</option>
-                            <option value="10">Arc Hand Knee Break</option>
+                            <option value="arc hand attack">
+                              Arc Hand Attack
+                            </option>
+                            <option value="arc hand knee break">
+                              Arc Hand Knee Break
+                            </option>
                           </optgroup>
                           <optgroup label="Black Belt" />
-                          <option value="12">Middle Knuckle</option>
-                          <option value="13">Back Knuckle</option>
+                          <option value="middle knuckle">Middle Knuckle</option>
+                          <option value="back knuckle">Back Knuckle</option>
                         </select>
                       </div>
                     </div>
@@ -332,23 +388,17 @@ export default connect(
   mapDispatchToProps
 )(CreatePattern);
 
-
-
-  // onChange = (event, newLine) => {
-  //   if (["feet", "hands"].includes(event.currentTarget.content)) {
-  //     let content = [...this.state.content];
-  //     content[event.target.id][event.target.content] = event.target.value;
-  //     this.setState({ content }, () =>
-  //       console.log(this.state.content, "the onChange was triggered")
-  //     );
-  //   } else {
-  //     this.setState({ [event.target.name]: event.target.value });
-  //   }
-  // };
-
-
-
-
+// onChange = (event, newLine) => {
+//   if (["feet", "hands"].includes(event.currentTarget.content)) {
+//     let content = [...this.state.content];
+//     content[event.target.id][event.target.content] = event.target.value;
+//     this.setState({ content }, () =>
+//       console.log(this.state.content, "the onChange was triggered")
+//     );
+//   } else {
+//     this.setState({ [event.target.name]: event.target.value });
+//   }
+// };
 
 /*
 
