@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 class CreatePattern extends Component {
   state = {
     title: "",
-    content: [{ feet: "", hands: "" }]
+    content: [{ feet: {}, hands: {} }]
   };
   //so im setting content in mapstatetoprops....do i have content in this.props in the component? but also ive set it up in state for the component.
   // i think i am using one instead of the other? like props when i ment state or vice-versa.
@@ -18,11 +18,11 @@ class CreatePattern extends Component {
     //alert(`Your ${this.state.title}pattern has been submitted.`);
   };
 
-  onChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+  // onChange = event => {
+  //   this.setState({
+  //     [event.target.id]: event.target.value
+  //   });
+  // };
   //trying to figure out how to update Per line of array... its just kinda overwriting at the moment.
   //idx +1 is down in the render() its what is adding a newline
   // onChange2 = (event, key) => {
@@ -43,20 +43,21 @@ class CreatePattern extends Component {
   //       }))
   // }
 
-  // onChange4 = (event, idx, value, newValue) => {
-  //   this.setState(prevState => {
-  //     const newContent = [...prevState.content];
-  //     newContent[idx].value = newValue;
-  //     return { content: newContent };
-  //   });
-  // };
+  //you could add another parameter, default value is empty string
+  onChange = (e, idx, feetOrHands = "") => {
+    console.log(e.target.id);
+    const newContent = [...this.state.content];
+    //find a way to access feet/hands dynamically
+    newContent[idx].feet[e.target.id] = e.target.value;
+    this.setState({ content: newContent });
+  };
 
   //Maybe use some vanilla JS methods?
   //Object.assign({idx})
 
   addLine = event => {
     this.setState(prevState => ({
-      content: [...prevState.content, { feet: "", hands: "" }]
+      content: [...prevState.content, { feet: {}, hands: {} }]
     }));
     console.log(this.state.content, "addLine was triggered");
   };
@@ -98,6 +99,7 @@ class CreatePattern extends Component {
           <hr />
           <div className="row">
             {content.map((value, idx) => {
+              console.log(content[idx].feet);
               return (
                 <div key={idx}>
                   <label> {`${idx + 1}`}</label>
@@ -107,9 +109,13 @@ class CreatePattern extends Component {
                       <div className="input-field col s.25">
                         <select
                           className="browser-default"
-                          id="content-feet-lr"
+                          id="feet-lr"
                           defaultValue="default"
-                          onChange={this.onChange}
+                          //find a way to assign/access feet
+                          //value is from the array, so it knows which one it's coming from
+                          value={content[idx].feet.feet_lr}
+                          //add feet or hands here
+                          onChange={e => this.onChange(e, idx, "feet")}
                         >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
