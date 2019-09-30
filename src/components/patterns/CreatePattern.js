@@ -93,7 +93,7 @@ class CreatePattern extends Component {
                           id="feet_lr"
                           defaultValue="default"
                           value={content[idx].feet.feet_lr}
-                          onChange={event => this.onChange(event.idx, "feet")}
+                          onChange={event => this.onChange(event.idx, "feet")}   //so uhh.. i suppose i'll need to Regex the strings here and put the full id in
                         >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
