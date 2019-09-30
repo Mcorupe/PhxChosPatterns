@@ -28,8 +28,8 @@ class CreatePattern extends Component {
     console.log(this);
     const newContent = [...this.state.content];
     if (
-      (event.target.value = event.target.value.str.includes(/feet_/g)) ||
-      (event.target.value = event.target.value.str.includes(/hands_/g))
+      (event.target.value = event.target.id.str.includes(/feet_/g)) ||  //cannot read property "target" of undefined
+      (event.target.value = event.target.id.str.includes(/hands_/g))
     ) {
       newContent[idx].feetOrHands[event.target.id] = event.target.value;
       this.setState({ content: newContent });
@@ -96,8 +96,11 @@ class CreatePattern extends Component {
                           defaultValue="default"
                           value={content[idx].feet.feet_lr} 
                           //playing with this callback onChange
-                          onChange={event => this.onChange(event.idx.id="feet_lr")}   //cannot set propery 'id' of undefined
-                        >                                                       
+                          //                                event.idx.value
+                          //                                event.target.value
+                          //                                event.content[idx].value
+                          onChange={event => this.onChange(event.target.value = content[idx].feet.id="feet_lr")}   //cannot set propery 'id' of undefined
+                         >                   
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
                           <option value="right">Right</option>
