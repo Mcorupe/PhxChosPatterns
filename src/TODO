@@ -2,7 +2,7 @@
 
 --------------- BUGS...or features? ------------------
 
-The wallpaper zooms in as more patternSummaries are added
+[X] The wallpaper zooms in as more patternSummaries are added
 
 
 
@@ -14,5 +14,5 @@ The wallpaper zooms in as more patternSummaries are added
 [X] show props.content again
 [] show dynamic props.content for user inputs 
 [kiiiiinda?] get writes back into cloud ****almost? check model for data being sent =/= ?****
-[]
+[] onChange in CreatePattern.js, conditional value grabbing
 
