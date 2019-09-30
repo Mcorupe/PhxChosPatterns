@@ -10,9 +10,9 @@
 
 ^^^^^^^^^^^^^^****---------------------- TODOS --------------------------****^^^^^^^^^^^^^^^^^^
 [] Have PatternList conditionally render for user+elevated user. Only show THIER patterns+superuser seeing All patterns
-[] add alert system for new pattern submissions
-[X] show props.content again
+[] add alert system/notifications for new pattern submissions
 [] show dynamic props.content for user inputs 
-[kiiiiinda?] get writes back into cloud ****almost? check model for data being sent =/= ?****
 [] onChange in CreatePattern.js, conditional value grabbing
+[X] show props.content again
+[X] get writes back into cloud ****almost? check model for data being sent =/= ?****
 

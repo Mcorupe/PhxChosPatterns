@@ -24,18 +24,20 @@ class CreatePattern extends Component {
   // };
 
   onChange = (event, idx, feetOrHands = "") => {
-    //console.log(event.target.id);
+    //console.log(event.target.id);   cannot read property "target" of undefined
     console.log(this);
     const newContent = [...this.state.content];
-    //find a way to access feet/hands dynamically
-    //i think i need to Regex the string of value to snip the "feet or hands" while doing it this way
-    if ((event.target.value = "feet_")) {     //using the IF to handle the drop down changes
+    if (
+      (event.target.value = event.target.value.str.includes(/feet_/g)) ||
+      (event.target.value = event.target.value.str.includes(/hands_/g))
+    ) {
       newContent[idx].feetOrHands[event.target.id] = event.target.value;
       this.setState({ content: newContent });
-    } else {                                  //using the else to take care of regular onChange
+    } else {
       this.setState({ [event.target.name]: event.target.value });
-    }                                         //God i feel like i got this close
-  };  
+    } //God i feel like i got this close
+      //refactor to a ternary when finished cuz its cooler and everyone likes those.
+  };
 
   addLine = event => {
     this.setState(prevState => ({
@@ -92,9 +94,10 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="feet_lr"
                           defaultValue="default"
-                          value={content[idx].feet.feet_lr}
-                          onChange={event => this.onChange(event.idx, "feet")}   //so uhh.. i suppose i'll need to Regex the strings here and put the full id in
-                        >
+                          value={content[idx].feet.feet_lr} 
+                          //playing with this callback onChange
+                          onChange={event => this.onChange(event.idx.id="feet_lr")}   //cannot set propery 'id' of undefined
+                        >                                                       
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
                           <option value="right">Right</option>
@@ -105,7 +108,7 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="feet_extras"
                           defaultValue="default"
-                          onChange={event => this.onChange(event.idx, "feet")}
+                          onChange={event => this.onChange(event.idx, /feet_/)}
                         >
                           <option value="default">Feet Extras</option>
                           <option value="high section">High Section</option>
