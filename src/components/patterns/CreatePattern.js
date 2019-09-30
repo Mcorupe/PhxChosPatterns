@@ -6,10 +6,9 @@ import { Redirect } from "react-router-dom";
 class CreatePattern extends Component {
   state = {
     title: "",
-    content: [{ feet: "", hands: "" }]
+    content: [{ feet: {}, hands: {} }]
   };
-  //so im setting content in mapstatetoprops....do i have content in this.props in the component? but also ive set it up in state for the component.
-  // i think i am using one instead of the other? like props when i ment state or vice-versa.
+
   onSubmit = e => {
     //e.preventDefault();
     this.props.createPattern(this.state);
@@ -18,45 +17,29 @@ class CreatePattern extends Component {
     //alert(`Your ${this.state.title}pattern has been submitted.`);
   };
 
-  onChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-  //trying to figure out how to update Per line of array... its just kinda overwriting at the moment.
-  //idx +1 is down in the render() its what is adding a newline
-  // onChange2 = (event, key) => {
-  //   this.setState(prevState => ({
-  //     content: {
-  //       ...prevState.content,
-  //       [prevState.content.key]: event.target.value
-  //     }
-  //   }));
-  // };
-
-  // onChange3 = (event, idx) => {
-  //       this.setState(prevState => ({
-  //         content: {
-  //           ...prevState.content,
-  //           [prevState.content.target.key[idx + 1] : event.target.value]
-  //         }
-  //       }))
-  // }
-
-  // onChange4 = (event, idx, value, newValue) => {
-  //   this.setState(prevState => {
-  //     const newContent = [...prevState.content];
-  //     newContent[idx].value = newValue;
-  //     return { content: newContent };
+  // onChange = event => {
+  //   this.setState({
+  //     [event.target.id]: event.target.value
   //   });
   // };
 
-  //Maybe use some vanilla JS methods?
-  //Object.assign({idx})
+  onChange = (event, idx, feetOrHands = "") => {
+    //console.log(event.target.id);
+    console.log(this);
+    const newContent = [...this.state.content];
+    //find a way to access feet/hands dynamically
+    //i think i need to Regex the string of value to snip the "feet or hands" while doing it this way
+    if ((event.target.value = "feet_")) {     //using the IF to handle the drop down changes
+      newContent[idx].feetOrHands[event.target.id] = event.target.value;
+      this.setState({ content: newContent });
+    } else {                                  //using the else to take care of regular onChange
+      this.setState({ [event.target.name]: event.target.value });
+    }                                         //God i feel like i got this close
+  };  
 
   addLine = event => {
     this.setState(prevState => ({
-      content: [...prevState.content, { feet: "", hands: "" }]
+      content: [...prevState.content, { feet: {}, hands: {} }]
     }));
     console.log(this.state.content, "addLine was triggered");
   };
@@ -107,9 +90,10 @@ class CreatePattern extends Component {
                       <div className="input-field col s.25">
                         <select
                           className="browser-default"
-                          id="content-feet-lr"
+                          id="feet_lr"
                           defaultValue="default"
-                          onChange={this.onChange}
+                          value={content[idx].feet.feet_lr}
+                          onChange={event => this.onChange(event.idx, "feet")}
                         >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
@@ -119,9 +103,9 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          id="content-feet-extras"
+                          id="feet_extras"
                           defaultValue="default"
-                          onChange={this.onChange}
+                          onChange={event => this.onChange(event.idx, "feet")}
                         >
                           <option value="default">Feet Extras</option>
                           <option value="high section">High Section</option>
@@ -132,9 +116,9 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          id="content-feet-stances"
+                          id="feet_stances"
                           defaultValue="default"
-                          onChange={this.onChange}
+                          onChange={event => this.onChange(event.idx, "feet")}
                         >
                           <option value="default">Stances</option>
                           <option value="maintain stance">
@@ -163,8 +147,8 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-feet-kicks"
-                          onChange={this.onChange}
+                          id="feet_kicks"
+                          onChange={event => this.onChange(event.idx, "feet")}
                         >
                           <option value="default">Kicks</option>
                           <option value="front snap">Front Snap</option>
@@ -188,8 +172,8 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands-lr"
-                          onChange={this.onChange}
+                          id="hands_lr"
+                          onChange={event => this.onChange(event.idx, "hands")}
                         >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
@@ -200,8 +184,8 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands-extras"
-                          onChange={this.onChange}
+                          id="hands_extras"
+                          onChange={event => this.onChange(event.idx, "hands")}
                         >
                           <option value="default">Hand Extras</option>
                           <option value="maintain hands">Maintain Hands</option>
@@ -224,8 +208,8 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands-blocks"
-                          onChange={this.onChange}
+                          id="hands_blocks"
+                          onChange={event => this.onChange(event.idx, "hands")}
                         >
                           <option value="default" disabled>
                             Blocks
@@ -319,8 +303,8 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           defaultValue="default"
-                          id="content-hands-attacks"
-                          onChange={this.onChange}
+                          id="hands_attacks"
+                          onChange={event => this.onChange(event.idx, "hands")}
                         >
                           <option value="default">Attacks</option>
                           <optgroup label="White Belt">
@@ -400,7 +384,7 @@ class CreatePattern extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    content: state.pattern.content //content in MS2P
+    content: state.pattern.content
   };
 };
 const mapDispatchToProps = dispatch => {
