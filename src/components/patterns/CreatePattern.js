@@ -17,26 +17,25 @@ class CreatePattern extends Component {
     //alert(`Your ${this.state.title}pattern has been submitted.`);
   };
 
-  // onChange = event => {
-  //   this.setState({
-  //     [event.target.id]: event.target.value
-  //   });
-  // };
-
-  onChange = (event, idx, feetOrHands = "") => {
-    //console.log(event.target.id);   cannot read property "target" of undefined
-    console.log(this);
+  
+  //figure out how to grab idx in this onChange, event.target
+  onChange = (event, idx) => {
+    console.log(event.target.id, "------the .id");
+    console.log(event.target.value, "------the .value")
+    console.log(this)
     const newContent = [...this.state.content];
-    if (
-      (event.target.value = event.target.id.str.includes(/feet_/g)) ||  //cannot read property "target" of undefined
-      (event.target.value = event.target.id.str.includes(/hands_/g))
-    ) {
-      newContent[idx].feetOrHands[event.target.id] = event.target.value;
-      this.setState({ content: newContent });
+    if (event.target.id.includes("feet" || "hands")) {
+      //newContent[("feet" || "hands")][event.target.id] = event.target.value; //this is the badguy now. cannot set property 'feet_lr' of undefined
+      //newContent.map(feet || hands).event.target.id = event.target.value
+      //newContent event.target.value = event.target.value
+      //this.setState.content({ feet: newContent });
+      //this.setState({ id: event.target.id})    //this will put id: _____ into the state object
+
+      this.setState(newContent[{feet: event.target.value}, {hands: event.target.id}])
+      
     } else {
-      this.setState({ [event.target.name]: event.target.value });
+      this.setState({ title : event.target.value });
     } //God i feel like i got this close
-      //refactor to a ternary when finished cuz its cooler and everyone likes those.
   };
 
   addLine = event => {
@@ -57,7 +56,6 @@ class CreatePattern extends Component {
     const { auth } = this.props;
     const { content } = this.state;
     if (!auth.uid) return <Redirect to="/signin" />;
-    console.log(this);
     return (
       <div className="field">
         <form onSubmit={this.onSubmit} className="white">
@@ -94,13 +92,14 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="feet_lr"
                           defaultValue="default"
-                          value={content[idx].feet.feet_lr} 
-                          //playing with this callback onChange
-                          //                                event.idx.value
-                          //                                event.target.value
-                          //                                event.content[idx].value
-                          onChange={event => this.onChange(event.target.value = content[idx].feet.id="feet_lr")}   //cannot set propery 'id' of undefined
-                         >                   
+                          value={content[idx].feet.feet_lr}
+                          data-index={idx}
+                          //value={this.state.content[idx].id}
+                          onChange={this.onChange}
+                          //console.log(event.target.value)}
+                          //{newContent: value.feet.id="feet_lr"})}
+                          //console.log(newContent[idx].feet.value)}
+                        >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
                           <option value="right">Right</option>
