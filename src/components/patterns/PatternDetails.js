@@ -7,7 +7,8 @@ import moment from "moment";
 //moment is a time-stamp formatter lib that im playing with
 
 const PatternDetails = props => {
-  const { pattern, auth } = props;
+  const { pattern, auth, idx } = props;
+  console.log(pattern);
   if (!auth.uid) return <Redirect to="/signin" />;
   if (pattern) {
     //if im destructuring pattern off props... why do i have to use pattern.___
@@ -47,7 +48,6 @@ const PatternDetails = props => {
               </div>
               {moment(pattern.createdAt.toDate()).format("MMMM Do YYYY, h:mm")}
             </div>
-            {moment(pattern.createdAt.toDate()).format("MMMM Do YYYY, h:mm")}
           </div>
         </div>
       </div>

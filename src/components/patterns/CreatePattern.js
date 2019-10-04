@@ -4,18 +4,16 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 class CreatePattern extends Component {
-  state = {
-    title: "",
-    content: [{ feet: {}, hands: {} }]
-  };
-  //so im setting content in mapstatetoprops....do i have content in this.props in the component? but also ive set it up in state for the component.
-  // i think i am using one instead of the other? like props when i ment state or vice-versa.
+  constructor(props) {
+    super(props);
+    this.state = { title: "", content: [{ feet: {}, hands: {} }] };
+  }
   onSubmit = e => {
-    //e.preventDefault();
+    e.preventDefault();
     this.props.createPattern(this.state);
     this.props.history.push("/");
     console.log(this.state);
-    //alert(`Your ${this.state.title}pattern has been submitted.`);
+    alert(`Your ${this.state.title} pattern has been submitted.`);
   };
 
   // onChange = event => {
@@ -43,37 +41,34 @@ class CreatePattern extends Component {
   //       }))
   // }
 
-  //you could add another parameter, default value is empty string
-  onChange = (e, idx, feetOrHands = "") => {
-    console.log(e.target.id);
+  onChange = event => {
     const newContent = [...this.state.content];
-    //find a way to access feet/hands dynamically
-    newContent[idx].feet[e.target.id] = e.target.value;
-    this.setState({ content: newContent });
+    if (event.target.id.includes("feet") || event.target.id.includes("hands")) {
+      newContent[event.target.getAttribute("data-idx")][
+        event.target.id.includes("feet") ? "feet" : "hands"
+      ][event.target.id] = event.target.value;
+      this.setState({ content: newContent });
+    } else {
+      this.setState({ title: event.target.value });
+    }
   };
 
-  //Maybe use some vanilla JS methods?
-  //Object.assign({idx})
-
-  addLine = event => {
+  addLine = () => {
     this.setState(prevState => ({
       content: [...prevState.content, { feet: {}, hands: {} }]
     }));
-    console.log(this.state.content, "addLine was triggered");
   };
 
-  removeLine = (index, event) => {
+  removeLine = index => {
     const content = Object.assign([], this.state.content);
     content.splice(index, 1);
     this.setState({ content: content });
-    console.log(this.state.content, "the RemoveLine");
   };
 
   render() {
     const { auth } = this.props;
     const { content } = this.state;
     if (!auth.uid) return <Redirect to="/signin" />;
-    console.log(this);
     return (
       <div className="field">
         <form onSubmit={this.onSubmit} className="white">
@@ -109,13 +104,11 @@ class CreatePattern extends Component {
                       <div className="input-field col s.25">
                         <select
                           className="browser-default"
-                          id="feet-lr"
+                          id="feet_lr"
+                          data-idx={idx}
                           defaultValue="default"
-                          //find a way to assign/access feet
-                          //value is from the array, so it knows which one it's coming from
                           value={content[idx].feet.feet_lr}
-                          //add feet or hands here
-                          onChange={e => this.onChange(e, idx, "feet")}
+                          onChange={this.onChange}
                         >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
@@ -125,8 +118,10 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          id="content-feet-extras"
+                          id="feet_extras"
+                          data-idx={idx}
                           defaultValue="default"
+                          value={content[idx].feet.feet_extras}
                           onChange={this.onChange}
                         >
                           <option value="default">Feet Extras</option>
@@ -138,8 +133,10 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          id="content-feet-stances"
+                          id="feet_stances"
+                          data-idx={idx}
                           defaultValue="default"
+                          value={content[idx].feet.feet_stances}
                           onChange={this.onChange}
                         >
                           <option value="default">Stances</option>
@@ -168,8 +165,10 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
+                          id="feet_kicks"
+                          data-idx={idx}
                           defaultValue="default"
-                          id="content-feet-kicks"
+                          value={content[idx].feet.feet_kicks}
                           onChange={this.onChange}
                         >
                           <option value="default">Kicks</option>
@@ -193,8 +192,10 @@ class CreatePattern extends Component {
                       <div className="input-field col s.25">
                         <select
                           className="browser-default"
+                          id="hands_lr"
+                          data-idx={idx}
                           defaultValue="default"
-                          id="content-hands-lr"
+                          value={content[idx].hands.hands_lr}
                           onChange={this.onChange}
                         >
                           <option value="default">L / R</option>
@@ -205,8 +206,10 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
+                          id="hands_extras"
+                          data-idx={idx}
                           defaultValue="default"
-                          id="content-hands-extras"
+                          value={content[idx].hands.hands_extras}
                           onChange={this.onChange}
                         >
                           <option value="default">Hand Extras</option>
@@ -229,13 +232,13 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
+                          id="hands_blocks"
+                          data-idx={idx}
                           defaultValue="default"
-                          id="content-hands-blocks"
+                          value={content[idx].hands.hands_blocks}
                           onChange={this.onChange}
                         >
-                          <option value="default" disabled>
-                            Blocks
-                          </option>
+                          <option value="default">Blocks</option>
                           <optgroup label="White Belt">
                             <option value="down block">Down Block</option>
                             <option value="rising block">Rising Block</option>
@@ -324,8 +327,10 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
+                          id="hands_attacks"
+                          data-idx={idx}
                           defaultValue="default"
-                          id="content-hands-attacks"
+                          value={content[idx].hands.hands_attacks}
                           onChange={this.onChange}
                         >
                           <option value="default">Attacks</option>
@@ -406,7 +411,7 @@ class CreatePattern extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    content: state.pattern.content //content in MS2P
+    content: state.pattern.content
   };
 };
 const mapDispatchToProps = dispatch => {
