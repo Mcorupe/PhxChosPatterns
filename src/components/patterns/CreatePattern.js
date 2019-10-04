@@ -14,14 +14,17 @@ class CreatePattern extends Component {
     this.props.createPattern(this.state);
     this.props.history.push("/");
     console.log(this.state);
-    alert(`Your ${this.state.title}pattern has been submitted.`);
+    alert(`Your ${this.state.title} pattern has been submitted.`);
   };
 
   onChange = event => {
     console.log(this);
     console.log(event.target);
+    // console.log(event.target.id.includes("feet"), "feet")
+    // console.log(event.target.id.includes("hands"), "hands")
+    console.log(event.target.id.includes("feet") || (event.target.id.includes("hands")))
     const newContent = [...this.state.content];
-    if (event.target.id.includes("feet" || "hands")) {
+    if (event.target.id.includes("feet") || event.target.id.includes("hands")) {
       newContent[event.target.getAttribute("data-idx")][
         event.target.id.includes("feet") ? "feet" : "hands"
       ][event.target.id] = event.target.value;

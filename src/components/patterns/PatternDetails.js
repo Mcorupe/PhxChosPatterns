@@ -9,29 +9,44 @@ import moment from "moment";
 const PatternDetails = props => {
   const { pattern, auth, idx } = props;
   //const content = pattern.content;
-  console.log("pattern--------", pattern);
+  console.log(pattern);
   //console.log()
   if (!auth.uid) return <Redirect to="/signin" />;
   if (pattern) {
     return (
-      //if im destructuring pattern off props... why do i have to use pattern.___
+      <div>
+        <div className="container section pattern-details">
+          <div className="card z-depth-0">
+            <div className="card-content">
+              <span className="card-title">{pattern.title}</span>
+             
 
-      //https://www.golangprograms.com/display-json-data-in-reactjs.html
+              <div key={pattern.idx}></div>
+              <div>
+                {pattern.content.map(idx => {
+                  console.log(idx, "my idx")
+                  return (
+                    <div>
+                      <ul>
+                        hi
+                        {/* {pattern.content.map((content,idx) => {
+                          return <li key={content.idx}>{content}</li>; */}
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
 
-      <div className="container section pattern-details">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className="card-title">{pattern.title}</span>
-            <div key={pattern.idx}></div>
-
-            <p>These are PatternDetails</p>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>
-              Posted by {pattern.authorFirstName}
-              {pattern.authorLastName}
+              <p>These are PatternDetails</p>
             </div>
-            {moment(pattern.createdAt.toDate()).format("MMMM Do YYYY, h:mm")}
+            <div className="card-action grey lighten-4 grey-text">
+              <div>
+                Posted by {pattern.authorFirstName}
+                {pattern.authorLastName}
+              </div>
+              {moment(pattern.createdAt.toDate()).format("MMMM Do YYYY, h:mm")}
+            </div>
           </div>
         </div>
       </div>
