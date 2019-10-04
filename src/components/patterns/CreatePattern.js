@@ -10,32 +10,25 @@ class CreatePattern extends Component {
   };
 
   onSubmit = e => {
-    //e.preventDefault();
+    e.preventDefault();
     this.props.createPattern(this.state);
     this.props.history.push("/");
     console.log(this.state);
-    //alert(`Your ${this.state.title}pattern has been submitted.`);
+    alert(`Your ${this.state.title}pattern has been submitted.`);
   };
 
-  
-  //figure out how to grab idx in this onChange, event.target
-  onChange = (event, idx) => {
-    console.log(event.target.id, "------the .id");
-    console.log(event.target.value, "------the .value")
-    console.log(this)
+  onChange = event => {
+    console.log(this);
+    console.log(event.target);
     const newContent = [...this.state.content];
     if (event.target.id.includes("feet" || "hands")) {
-      //newContent[("feet" || "hands")][event.target.id] = event.target.value; //this is the badguy now. cannot set property 'feet_lr' of undefined
-      //newContent.map(feet || hands).event.target.id = event.target.value
-      //newContent event.target.value = event.target.value
-      //this.setState.content({ feet: newContent });
-      //this.setState({ id: event.target.id})    //this will put id: _____ into the state object
-
-      this.setState(newContent[{feet: event.target.value}, {hands: event.target.id}])
-      
+      newContent[event.target.getAttribute("data-idx")][
+        event.target.id.includes("feet") ? "feet" : "hands"
+      ][event.target.id] = event.target.value;
+      this.setState({ content: newContent });
     } else {
-      this.setState({ title : event.target.value });
-    } //God i feel like i got this close
+      this.setState({ title: event.target.value });
+    }
   };
 
   addLine = event => {
@@ -91,14 +84,10 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           id="feet_lr"
+                          data-idx={idx}
                           defaultValue="default"
                           value={content[idx].feet.feet_lr}
-                          data-index={idx}
-                          //value={this.state.content[idx].id}
                           onChange={this.onChange}
-                          //console.log(event.target.value)}
-                          //{newContent: value.feet.id="feet_lr"})}
-                          //console.log(newContent[idx].feet.value)}
                         >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
@@ -109,8 +98,10 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           id="feet_extras"
+                          data-idx={idx}
                           defaultValue="default"
-                          onChange={event => this.onChange(event.idx, /feet_/)}
+                          value={content[idx].feet.feet_extras}
+                          onChange={this.onChange}
                         >
                           <option value="default">Feet Extras</option>
                           <option value="high section">High Section</option>
@@ -122,8 +113,10 @@ class CreatePattern extends Component {
                         <select
                           className="browser-default"
                           id="feet_stances"
+                          data-idx={idx}
                           defaultValue="default"
-                          onChange={event => this.onChange(event.idx, "feet")}
+                          value={content[idx].feet.feet_stances}
+                          onChange={this.onChange}
                         >
                           <option value="default">Stances</option>
                           <option value="maintain stance">
@@ -151,9 +144,11 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          defaultValue="default"
                           id="feet_kicks"
-                          onChange={event => this.onChange(event.idx, "feet")}
+                          data-idx={idx}
+                          defaultValue="default"
+                          value={content[idx].feet.feet_kicks}
+                          onChange={this.onChange}
                         >
                           <option value="default">Kicks</option>
                           <option value="front snap">Front Snap</option>
@@ -176,9 +171,11 @@ class CreatePattern extends Component {
                       <div className="input-field col s.25">
                         <select
                           className="browser-default"
-                          defaultValue="default"
                           id="hands_lr"
-                          onChange={event => this.onChange(event.idx, "hands")}
+                          data-idx={idx}
+                          defaultValue="default"
+                          value={content[idx].hands.hands_lr}
+                          onChange={this.onChange}
                         >
                           <option value="default">L / R</option>
                           <option value="left">Left</option>
@@ -188,9 +185,11 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          defaultValue="default"
                           id="hands_extras"
-                          onChange={event => this.onChange(event.idx, "hands")}
+                          data-idx={idx}
+                          defaultValue="default"
+                          value={content[idx].hands.hands_extras}
+                          onChange={this.onChange}
                         >
                           <option value="default">Hand Extras</option>
                           <option value="maintain hands">Maintain Hands</option>
@@ -212,13 +211,13 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          defaultValue="default"
                           id="hands_blocks"
-                          onChange={event => this.onChange(event.idx, "hands")}
+                          data-idx={idx}
+                          defaultValue="default"
+                          value={content[idx].hands.hands_blocks}
+                          onChange={this.onChange}
                         >
-                          <option value="default" disabled>
-                            Blocks
-                          </option>
+                          <option value="default">Blocks</option>
                           <optgroup label="White Belt">
                             <option value="down block">Down Block</option>
                             <option value="rising block">Rising Block</option>
@@ -307,9 +306,11 @@ class CreatePattern extends Component {
                       <div className="input-field col s1.5">
                         <select
                           className="browser-default"
-                          defaultValue="default"
                           id="hands_attacks"
-                          onChange={event => this.onChange(event.idx, "hands")}
+                          data-idx={idx}
+                          defaultValue="default"
+                          value={content[idx].hands.hands_attacks}
+                          onChange={this.onChange}
                         >
                           <option value="default">Attacks</option>
                           <optgroup label="White Belt">

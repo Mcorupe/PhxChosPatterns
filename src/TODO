@@ -3,16 +3,16 @@
 --------------- BUGS...or features? ------------------
 
 [X] The wallpaper zooms in as more patternSummaries are added
-
-
+[] Hand is overwriting title in state onSubmit/onChange
+[] CreatePattern hands & feet need to be able to go on same array
 
 
 
 ^^^^^^^^^^^^^^****---------------------- TODOS --------------------------****^^^^^^^^^^^^^^^^^^
 [] Have PatternList conditionally render for user+elevated user. Only show THIER patterns+superuser seeing All patterns
 [] add alert system/notifications for new pattern submissions
-[] show dynamic props.content for user inputs 
-[] onChange in CreatePattern.js, conditional value grabbing
+[] patternDetails displaying content
+[X] onChange in CreatePattern.js
 [X] show props.content again
 [X] get writes back into cloud ****almost? check model for data being sent =/= ?****
 
