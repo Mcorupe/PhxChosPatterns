@@ -10,7 +10,7 @@ class CreatePattern extends Component {
   };
 
   onSubmit = e => {
-    e.preventDefault();
+    //e.preventDefault();
     this.props.createPattern(this.state);
     this.props.history.push("/");
     console.log(this.state);

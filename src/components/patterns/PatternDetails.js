@@ -8,38 +8,32 @@ import moment from "moment";
 
 const PatternDetails = props => {
   const { pattern, auth, idx } = props;
-  //const content = pattern.content;
-  console.log(pattern);
-  //console.log()
+
   if (!auth.uid) return <Redirect to="/signin" />;
   if (pattern) {
+    console.log(pattern.content);
+    console.log(pattern.content.idx)
+
     return (
       <div>
         <div className="container section pattern-details">
           <div className="card z-depth-0">
             <div className="card-content">
               <span className="card-title">{pattern.title}</span>
-             
-
-              <div key={pattern.idx}></div>
               <div>
-                {pattern.content.map(idx => {
-                  console.log(idx, "my idx")
-                  return (
-                    <div>
-                      <ul>
-                        hi
-                        {/* {pattern.content.map((content,idx) => {
-                          return <li key={content.idx}>{content}</li>; */}
-                        })}
-                      </ul>
-                    </div>
-                  );
-                })}
+                i want to pattern.content.map(cry) 
+                {/* {pattern.content.map((idx) => (
+                  <div key={idx}>
+                    {pattern.content.map((idx) => (
+                      <div key={idx}>
+                        <li key={idx}>{pattern.content[idx]}</li>;
+                      </div>
+                    ))}
+                  </div>
+                ))} */}
               </div>
-
-              <p>These are PatternDetails</p>
             </div>
+
             <div className="card-action grey lighten-4 grey-text">
               <div>
                 Posted by {pattern.authorFirstName}
@@ -91,3 +85,8 @@ export default compose(
 //     );
 //   })}
 // </div>;
+
+// {Object.keys(pattern.content).map((key, idx) => {
+//   const display = pattern.content[key];
+//   return <li display={display} key={idx}></li>;
+// })}
