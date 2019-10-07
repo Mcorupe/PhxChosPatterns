@@ -7,12 +7,11 @@ import moment from "moment";
 //moment is a time-stamp formatter lib that im playing with
 
 const PatternDetails = props => {
-  const { pattern, auth, idx } = props;
+  const { pattern, auth } = props;
 
   if (!auth.uid) return <Redirect to="/signin" />;
   if (pattern) {
     console.log(pattern.content);
-    console.log(pattern.content.idx)
 
     return (
       <div>
@@ -21,16 +20,18 @@ const PatternDetails = props => {
             <div className="card-content">
               <span className="card-title">{pattern.title}</span>
               <div>
-                i want to pattern.content.map(cry) 
-                {/* {pattern.content.map((idx) => (
-                  <div key={idx}>
-                    {pattern.content.map((idx) => (
-                      <div key={idx}>
-                        <li key={idx}>{pattern.content[idx]}</li>;
-                      </div>
-                    ))}
-                  </div>
-                ))} */}
+                {pattern.content.map((content, idx) => {
+                  return (
+                    <li key={idx} className="content">
+                      {Object.keys(content.feet).map((key, idx) => {
+                        return <li className="feet">{content.feet[key]}</li>;
+                      })}
+                      {Object.keys(content.hands).map((key, idx) => {
+                        return <li className="hands">{content.hands[key]}</li>;
+                      })}
+                    </li>
+                  );
+                })}
               </div>
             </div>
 
@@ -90,3 +91,14 @@ export default compose(
 //   const display = pattern.content[key];
 //   return <li display={display} key={idx}></li>;
 // })}
+
+// i want content.map(cry)
+// {pattern[0].content.map((pattern,idx) => (
+//   <div key={idx}>
+//     {pattern[0].content.map((pattern,idx) => (
+//       <div key={idx}>
+//         <li key={idx}>{pattern.content[idx]}</li>;
+//       </div>
+//     ))}
+//   </div>
+// ))}
