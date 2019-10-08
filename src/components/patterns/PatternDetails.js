@@ -4,6 +4,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import moment from "moment";
+import "../../index.css";
 //moment is a time-stamp formatter lib that im playing with
 
 const PatternDetails = props => {
@@ -12,35 +13,54 @@ const PatternDetails = props => {
   if (!auth.uid) return <Redirect to="/signin" />;
   if (pattern) {
     console.log(pattern.content);
-
+    console.log(pattern.content);
     return (
       <div>
         <div className="container section pattern-details">
           <div className="card z-depth-0">
-            <div className="card-content">
-              <span className="card-title">{pattern.title}</span>
-              <div>
-                {pattern.content.map((content, idx) => {
-                  return (
-                    <li key={idx} className="content">
-                      {Object.keys(content.feet).map((key, idx) => {
-                        return <li className="feet">{content.feet[key]}</li>;
-                      })}
-                      {Object.keys(content.hands).map((key, idx) => {
-                        return <li className="hands">{content.hands[key]}</li>;
-                      })}
-                    </li>
-                  );
-                })}
-              </div>
-            </div>
-
             <div className="card-action grey lighten-4 grey-text">
               <div>
                 Posted by {pattern.authorFirstName}
                 {pattern.authorLastName}
               </div>
-              {moment(pattern.createdAt.toDate()).format("MMMM Do YYYY, h:mm")}
+              {moment(pattern.createdAt.toDate()).format("MMM Do YYYY, LT")}
+            </div>
+            <div className="card-content">
+              <span className="card-title">{pattern.title}</span>
+
+              <div>
+                <div className="row">
+                  <label className="feet_label col s6 center-align">Feet</label>
+                  <label className="hands_label col s6 center-align">
+                    Hands
+                  </label>
+                </div>
+                {pattern.content.map((content, idx) => {
+                  return (
+                    <div>
+                      <label className="number_label col s2">{`${idx +
+                        1}`}</label>
+                      <div key={idx} className="row line">
+                        {Object.keys(content.feet).map(key => {
+                          return (
+                            <div className="feet col s2 left-align">
+                              {content.feet[key]}
+                            </div>
+                          );
+                        })}
+                        {Object.keys(content.hands).map(key => {
+                          return (
+                            <div className="hands col s2 left-align">
+                              {content.hands[key]}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <hr className="style-eight" />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

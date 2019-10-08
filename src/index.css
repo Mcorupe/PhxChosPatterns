@@ -12,10 +12,33 @@ body {
   background-color: grey;
   background-attachment: fixed;
 }
+label {
+  font-size: 20px;
+}
+.number_label {
+  font-size: 15px;
+}
 
 form {
   padding: 20px;
   margin: 100px;
+}
+
+hr.style-eight {
+  overflow: visible; /* For IE */
+  padding: 0;
+  color: grey;
+  text-align: center;
+}
+hr.style-eight:after {
+  content: "12345678";
+  color: transparent;
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: white;
 }
 form button,
 form h5 {

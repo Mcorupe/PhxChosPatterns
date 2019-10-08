@@ -11,7 +11,9 @@
 ^^^^^^^^^^^^^^****---------------------- TODOS --------------------------****^^^^^^^^^^^^^^^^^^
 [] Have PatternList conditionally render for user+elevated user. Only show THIER patterns+superuser seeing All patterns
 [] add alert system/notifications for new pattern submissions
-[] patternDetails displaying content
+[] patternDetails displaying the content nice and pretty. 
+[] sort patternList by author
+[X] patternDetails displaying content
 [X] onChange in CreatePattern.js
 [X] show props.content again
 [X] get writes back into cloud ****almost? check model for data being sent =/= ?****
