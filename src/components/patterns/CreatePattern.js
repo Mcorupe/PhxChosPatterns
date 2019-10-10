@@ -3,6 +3,8 @@ import { createPattern } from "../../store/actions/patternActions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+
+//CreatePattern is the form where a student creates a pattern
 class CreatePattern extends Component {
   state = {
     title: "",

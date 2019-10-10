@@ -1,20 +1,39 @@
 
+WHERE WAS i
+
+REDUX SELECTORS FOR .SORT()
+https://medium.com/@matthew.holman/what-is-a-redux-selector-a517acee1fe8
+https://medium.com/top-hat-engineering/selectors-in-a-redux-world-28178fd3bb23
+
+might scrap /sorting/sort.js
 
 --------------- BUGS...or features? ------------------
 
 [X] The wallpaper zooms in as more patternSummaries are added
-[] Hand is overwriting title in state onSubmit/onChange
-[] CreatePattern hands & feet need to be able to go on same array
-
-
+[X] Hand is overwriting title in state onSubmit/onChange
+[X] CreatePattern hands & feet need to be able to go on same array
 
 ^^^^^^^^^^^^^^****---------------------- TODOS --------------------------****^^^^^^^^^^^^^^^^^^
+
+**************************************  Phase 1 ************************************************
 [] Have PatternList conditionally render for user+elevated user. Only show THIER patterns+superuser seeing All patterns
-[] add alert system/notifications for new pattern submissions
 [] patternDetails displaying the content nice and pretty. 
-[] sort patternList by author
+[] sort patternList by X
 [X] patternDetails displaying content
 [X] onChange in CreatePattern.js
 [X] show props.content again
 [X] get writes back into cloud ****almost? check model for data being sent =/= ?****
 
+
+
+
+**************************************  Phase 2 ************************************************
+[] add alert system/notifications for new pattern submissions
+[] add "Edit Mode" for admins
+[] add notes for admins
+[] PAGINATION :(
+
+
+**************************************  Phase 3 ************************************************
+[] add EmailJs for notifications
+[] Auto Grade

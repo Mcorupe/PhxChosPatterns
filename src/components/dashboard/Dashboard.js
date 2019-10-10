@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Notifications from "./Notifications";
 import PatternList from "../patterns/PatternList";
+import SortName from "../sorting/sort"
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -9,12 +10,13 @@ import { Redirect } from "react-router-dom";
 class Dashboard extends Component {
   render() {
     //console.log(this.props + " dashboard this.props")
-    
+
     const { patterns, auth } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
       <div className="dashboard container">
+        <SortName />
         <div className="row">
           <div className="col s12 m6">
             <PatternList patterns={patterns} />
@@ -27,13 +29,10 @@ class Dashboard extends Component {
     );
   }
 }
-//<PatternList patterns={patterns} />
 
 const mapStateToProps = state => {
   return {
     patterns: state.firestore.ordered.patterns,
-    // content: state.firestore.patterns.content,
-    // title: state.firestore.patterns.title,
     auth: state.firebase.auth
   };
 };

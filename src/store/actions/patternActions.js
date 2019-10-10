@@ -11,7 +11,6 @@ export const createPattern = pattern => {
       .collection("patterns")
       .add({
         ...pattern,
-        //content should be on ...pattern, but i cant see it going into firebase
         authorFirstName: profile.firstName,
         authorLastName: profile.lastName,
         authorId: authorId,

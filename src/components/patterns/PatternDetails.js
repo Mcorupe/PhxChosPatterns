@@ -7,6 +7,7 @@ import moment from "moment";
 import "../../index.css";
 //moment is a time-stamp formatter lib that im playing with
 
+//pattern details is a completed form
 const PatternDetails = props => {
   const { pattern, auth } = props;
 
