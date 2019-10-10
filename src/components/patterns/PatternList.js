@@ -11,7 +11,7 @@ const PatternList = ({ patterns }) => {
     <div className="pattern-list section">
       {patterns &&
         patterns.map(pattern => {
-          console.log(pattern)
+          console.log(pattern);
           return (
             <Link to={"/pattern/" + pattern.id} key={pattern.id}>
               <PatternSummary pattern={pattern} />

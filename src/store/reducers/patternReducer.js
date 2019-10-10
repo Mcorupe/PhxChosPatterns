@@ -9,21 +9,28 @@ const initState = {
 
 //making a selector for .sort(authorFirstName, createdAt, title)
 //.....or did i just make a reducer WHAT IS THE DIFFERNCE  =S
-export const currentFilter = state => {
+export const currentSort = state => {
   switch (state) {
     case "SORT_AUTHOR_FIRST_NAME":
-      console.log("currentFilter SORT_AUTHOR_FIRST_NAME")
-      return state.patterns.sort((a, b) => a.authorFirstName > b.authorFirstName);
+      console.log("currentSort SORT_AUTHOR_FIRST_NAME")
+      return state.pattern.sort((a, b) => a.authorFirstName > b.authorFirstName);
     case "SORT_BY_DATE":
-      console.log("currentFilter: SORT_BY_DATE")
-      return state.patterns.sort((a, b) => a.createdAt > b.createdAt);
+      console.log("currentSort: SORT_BY_DATE")
+      return state.pattern.sort((a, b) => a.createdAt > b.createdAt);
     case "SORT_TITLE":
-        console.log("currentFilter: SORT_TITLE")
-      return state.patterns.sort((a, b) => a.title > b.title);
+        console.log("currentSort: SORT_TITLE")
+      return state.pattern.sort((a, b) => a.title > b.title);
     default:
       return state;
   }
 };
+
+export const selectPatternSort = state => state.pattern
+
+
+
+
+
 
 //this gets stored on the pattern property on state by the rootReducer
 const patternReducer = (state = initState, action) => {

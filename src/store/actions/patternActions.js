@@ -24,3 +24,22 @@ export const createPattern = pattern => {
       });
   };
 };
+
+
+
+export const updateSort = state => {
+  switch (state) {
+    case "SORT_AUTHOR_FIRST_NAME":
+      console.log("updateSort SORT_AUTHOR_FIRST_NAME")
+      return state.pattern.sort((a, b) => a.authorFirstName > b.authorFirstName);
+      //should this be return [...state.pattern] to avoid mutating?
+    case "SORT_BY_DATE":
+      console.log("updateSort: SORT_BY_DATE")
+      return state.pattern.sort((a, b) => a.createdAt > b.createdAt);
+    case "SORT_TITLE":
+        console.log("updateSort: SORT_TITLE")
+      return state.pattern.sort((a, b) => a.title > b.title);
+    default:
+      return state;
+  }
+};
