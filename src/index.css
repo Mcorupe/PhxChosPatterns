@@ -24,13 +24,34 @@ form {
   margin: 100px;
 }
 
-hr.style-eight {
+.browser-default {
+  position: relative;
+  font-weight: 500;
+  max-width: 200px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 0.75em;
+  background-color: lightgrey;
+  transition: all 0.3s ease-out;
+}
+.browser-default:hover {
+  font-weight: 600;
+  border-color: silver;
+  background-color: white;
+  transition: .3s ease-out;
+}
+.browser-default:focus {
+  background-color:white;
+}
+
+
+
+hr.with-break {
   overflow: visible; /* For IE */
   padding: 0;
   color: grey;
   text-align: center;
 }
-hr.style-eight:after {
+hr.with-break:after {
   content: "12345678";
   color: transparent;
   display: inline-block;

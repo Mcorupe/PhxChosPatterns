@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { createPattern } from "../../store/actions/patternActions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
+import "../../index.css";
 
 //CreatePattern is the form where a student creates a pattern
 class CreatePattern extends Component {
@@ -20,7 +20,10 @@ class CreatePattern extends Component {
 
   onChange = event => {
     const newContent = [...this.state.content];
-    console.log(this.state.content)
+    console.log(this.state.content);
+    console.log(event.target.id, "-----the id");
+    console.log(event.target.value, "-----the value");
+    console.log(event.target)
     if (event.target.id.includes("feet") || event.target.id.includes("hands")) {
       newContent[event.target.getAttribute("data-idx")][
         event.target.id.includes("feet") ? "feet" : "hands"
@@ -55,7 +58,7 @@ class CreatePattern extends Component {
     if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div className="field">
-        <form onSubmit={this.onSubmit} className="white">
+        <form onSubmit={this.onSubmit} className="grey lighten-4">
           <h5 className="grey-text text-darken-3">Create New Pattern</h5>
           <div className="input-field">
             <label htmlFor="title">Title</label>
@@ -75,6 +78,10 @@ class CreatePattern extends Component {
           >
             Remove Line
           </button>
+          <div className="row">
+            <label className="feet_label col s6 center-align">Feet</label>
+            <label className="hands_label col s6 center-align">Hands</label>
+          </div>
           <hr />
           <div className="row">
             {content.map((value, idx) => {
@@ -89,7 +96,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="A_feet_lr"
                           data-idx={idx}
-                          //defaultValue="default"
                           value={content[idx].feet.feet_lr}
                           onChange={this.onChange}
                         >
@@ -103,7 +109,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="B_feet_extras"
                           data-idx={idx}
-                          defaultValue="default"
                           value={content[idx].feet.feet_extras}
                           onChange={this.onChange}
                         >
@@ -118,7 +123,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="C_feet_stances"
                           data-idx={idx}
-                          defaultValue="default"
                           value={content[idx].feet.feet_stances}
                           onChange={this.onChange}
                         >
@@ -150,7 +154,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="D_feet_kicks"
                           data-idx={idx}
-                          defaultValue="default"
                           value={content[idx].feet.feet_kicks}
                           onChange={this.onChange}
                         >
@@ -177,7 +180,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="A_hands_lr"
                           data-idx={idx}
-                          defaultValue="default"
                           value={content[idx].hands.hands_lr}
                           onChange={this.onChange}
                         >
@@ -191,7 +193,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="B_hands_extras"
                           data-idx={idx}
-                          defaultValue="default"
                           value={content[idx].hands.hands_extras}
                           onChange={this.onChange}
                         >
@@ -217,7 +218,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="C_hands_blocks"
                           data-idx={idx}
-                          defaultValue="default"
                           value={content[idx].hands.hands_blocks}
                           onChange={this.onChange}
                         >
@@ -312,7 +312,6 @@ class CreatePattern extends Component {
                           className="browser-default"
                           id="D_hands_attacks"
                           data-idx={idx}
-                          defaultValue="default"
                           value={content[idx].hands.hands_attacks}
                           onChange={this.onChange}
                         >

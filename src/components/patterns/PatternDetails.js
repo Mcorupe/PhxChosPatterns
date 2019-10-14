@@ -14,7 +14,6 @@ const PatternDetails = props => {
   if (!auth.uid) return <Redirect to="/signin" />;
   if (pattern) {
     console.log(pattern.content);
-    console.log(pattern.content);
     return (
       <div>
         <div className="container section pattern-details">
@@ -28,7 +27,6 @@ const PatternDetails = props => {
             </div>
             <div className="card-content">
               <span className="card-title">{pattern.title}</span>
-
               <div>
                 <div className="row">
                   <label className="feet_label col s6 center-align">Feet</label>
@@ -42,22 +40,26 @@ const PatternDetails = props => {
                       <label className="number_label col s2">{`${idx +
                         1}`}</label>
                       <div key={idx} className="row line">
-                        {Object.keys(content.feet).map(key => {
-                          return (
-                            <div className="feet col s2 left-align">
-                              {content.feet[key]}
-                            </div>
-                          );
-                        })}
-                        {Object.keys(content.hands).map(key => {
-                          return (
-                            <div className="hands col s2 left-align">
-                              {content.hands[key]}
-                            </div>
-                          );
-                        })}
+                        <div className="feet col s6 ">
+                          {Object.keys(content.feet).map(key => {
+                            return (
+                              <div className="feet col s1.5 push-s1 left-align">
+                                {content.feet[key]}
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <div className="hands col s6 left-align">
+                          {Object.keys(content.hands).map(key => {
+                            return (
+                              <div className="hands col s1.5 push-s3 left-align">
+                                {content.hands[key]}
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
-                      <hr className="style-eight" />
+                      <hr className="with-break" />
                     </div>
                   );
                 })}

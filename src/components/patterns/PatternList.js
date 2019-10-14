@@ -14,7 +14,7 @@ const PatternList = ({ patterns }) => {
           console.log(pattern);
           return (
             <Link to={"/pattern/" + pattern.id} key={pattern.id}>
-              <PatternSummary pattern={pattern} />
+              <PatternSummary  pattern={pattern} />
             </Link>
           );
         })}
