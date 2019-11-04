@@ -10,8 +10,9 @@ import "../../index.css";
 //pattern details is a completed form
 const PatternDetails = props => {
   const { pattern, auth } = props;
-
+  
   if (!auth.uid) return <Redirect to="/signin" />;
+  
   if (pattern) {
     console.log(pattern.content);
     return (
@@ -37,8 +38,7 @@ const PatternDetails = props => {
                 {pattern.content.map((content, idx) => {
                   return (
                     <div>
-                      <label className="number_label col s2">{`${idx +
-                        1}`}</label>
+                      <label className="number_label col s2">{`${idx + 1}`}</label>
                       <div key={idx} className="row line">
                         <div className="feet col s6 ">
                           {Object.keys(content.feet).map(key => {
@@ -63,6 +63,7 @@ const PatternDetails = props => {
                     </div>
                   );
                 })}
+                <div>{pattern.selectedOption}</div>
               </div>
             </div>
           </div>

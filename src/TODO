@@ -30,8 +30,14 @@ might scrap /sorting/sort.js
 **************************************  Phase 2 ************************************************
 [] add alert system/notifications for new pattern submissions
 [] add "Edit Mode" for admins
+    []delete
+    []Edit
+    []highlight
+    []show change? *change made by admin
 [] add notes for admins
 [] PAGINATION :(
+[] addline/removeline + reset line
+[] separate feet/hands into seperate components to clean code base for CreatePattern
 
 
 **************************************  Phase 3 ************************************************

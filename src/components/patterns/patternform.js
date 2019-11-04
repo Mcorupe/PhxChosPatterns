@@ -11,6 +11,7 @@ class CreatePattern extends Component {
     content: [{ feet: {}, hands: {} }],
     selectedOption: ""
   };
+  //alright so probably adding some CSS into state here...
 
   onSubmit = event => {
     //e.preventDefault();
@@ -52,6 +53,7 @@ class CreatePattern extends Component {
   addLine = event => {
     this.setState(prevState => ({
       content: [...prevState.content, { feet: {}, hands: {} }]
+      
     }));
   };
 //removeLine needs to remove ONLY the line it's called on.
@@ -79,11 +81,13 @@ class CreatePattern extends Component {
             <label className="feet_label col s6 center-align">Feet</label>
             <label className="hands_label col s6 center-align">Hands</label>
           </div>
+
+
+          {/*this field is the "draft" form above the selects */}
           <div className="field">
             {this.state.content.map((content, idx) => {
               return (
                 <div>
-                  
                   <label className="number_label col s2">{`${idx + 1}`}</label>
                   <div key={idx} className="row line">
                     <div className="feet col s6 ">
@@ -110,10 +114,9 @@ class CreatePattern extends Component {
               );
             })}
           </div>
-
+            {/*this row is the row of selects*/}
           <div className="row">
             {content.map((value, idx) => {
-              return (
                 <div key={idx}>
                   <br />
                   <div className="row">
@@ -473,7 +476,6 @@ class CreatePattern extends Component {
                   </div>
                   <hr />
                 </div>
-              );
             })}
           </div>
           <div className="row">
