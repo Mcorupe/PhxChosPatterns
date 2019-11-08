@@ -12,7 +12,8 @@
 * Firebase
 
 ### Running the Code
-``` git clone https://github.com/Mcorupe/PhxChosPatterns.git
+``` 
+    git clone https://github.com/Mcorupe/PhxChosPatterns.git
     npm install
     npm start
 ``` 
